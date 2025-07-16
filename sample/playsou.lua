@@ -15,10 +15,10 @@ if (not fs.exists("sou.qtv")) then
 	getFile("decode/apis/bitreader.lua", "apis/bitreader.lua", badapplerepository)
 	getFile("decode/apis/hexscreen.lua", "apis/hexscreen.lua", badapplerepository)
 	getFile("decode/apis/wave.lua", "apis/wave.lua", badapplerepository)
-	getFile("sample/sou2.lua", "sou2.lua", myrepository)
-	getFile("sample/sou.dfpwm", "sou.dfpwm", myrepository)
+	getFile("sample/videoplayer.lua", "videoplayer.lua", myrepository)
+	getFile("sample/sou.nbs", "sou.nbs", myrepository)
 	getFile("sample/sou.qtv", "sou.qtv", myrepository)
 	
 end
 
-shell.run("sou2", "souyeah")
+shell.run("videoplayer", "sou")
