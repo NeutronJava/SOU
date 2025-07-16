@@ -143,7 +143,7 @@ for i=1, #arg do
 
 end
 
-print("Reading files... JET IS A NOOB, COSMIC DROOLS.")
+print("JET IS A NOOB, COSMIC DROOLS.")
 
 local videofile = arg[1]
 local audiofile
