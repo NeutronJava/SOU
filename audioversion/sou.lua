@@ -1,6 +1,5 @@
 require("apis.hexscreen")
 require("apis.bitreader")
-local wave = require("apis.wave")
 local dfpwm = require("cc.audio.dfpwm")
 local speaker = peripheral.find("speaker")
 
@@ -173,9 +172,20 @@ end
 -- VIDEO LOOP FUNCTION
 local function playVideo()
 	local status, err
-	while true do
-		status, err = pcall(readFrame)
+	local frame_index = 0
+	local frame_delay = 0.05 * sleep_ticks
+	local start_time = os.clock()
 
+	while true do
+		local expected_time = start_time + frame_index * frame_delay
+		local current_time = os.clock()
+		local delay = expected_time - current_time
+
+		if delay > 0 then
+			sleep(delay)
+		end
+
+		status, err = pcall(readFrame)
 		if not status then
 			if not loop then break end
 
@@ -193,11 +203,12 @@ local function playVideo()
 			end
 
 			hs.buffer = frame
+			start_time = os.clock()
+			frame_index = 0
 		else
 			hs:draw()
+			frame_index = frame_index + 1
 		end
-
-		sleep(0.05 * sleep_ticks)
 	end
 end
 
